@@ -1,95 +1,33 @@
+Getting and Cleaning Data Project
+The purpose of this project is to demonstrate your ability to collect, work with, and clean a data set. The goal is to prepare tidy data that can be used for later analysis. You will be graded by your peers on a series of yes/no questions related to the project. You will be required to submit: 1) a tidy data set as described below, 2) a link to a Github repository with your script for performing the analysis, and 3) a code book that describes the variables, the data, and any transformations or work that you performed to clean up the data called CodeBook.md. You should also include a README.md in the repo with your scripts. This repo explains how all of the scripts work and how they are connected.
 
-* dataset1.csv - 10299 rows and 81 cols
-* dataset2.csv - 180 rows and 81 cols
+One of the most exciting areas in all of data science right now is wearable computing - see for example this article . Companies like Fitbit, Nike, and Jawbone Up are racing to develop the most advanced algorithms to attract new users. The data linked to from the course website represent data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained:
 
-### Include dataset
-The data is located in the results folder
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
-dataset1 <- read.csv("results/dataset1.csv")
-dataset2 <- read.csv("results/dataset2.csv")
+Here are the data for the project:
 
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
+You should create one R script called run_analysis.R that does the following.
+
+Merges the training and the test sets to create one data set.
+Extracts only the measurements on the mean and standard deviation for each measurement.
+Uses descriptive activity names to name the activities in the data set
+Appropriately labels the data set with descriptive activity names.
+Creates a second, independent tidy data set with the average of each variable for each activity and each subject. Good luck!
 run_analysis.R
 
- 
--run_analysis <- function (){
+Generate Dataset
 
-file <- "data.zip"
-url <- "http://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-data_path <- "UCI HAR Dataset"
-result_folder <- "results"
- 
-##Install required packacets
+Checkout the repo, and run the script run_analysis.R.
 
-##Install required packacets  
-# looks if package is installed
- 
-if(!is.element("plyr", installed.packages()[,1])){
-  print("Installing packages")
-  install.packages("plyr")
-}
- 
-library(plyr)
+source("run_analysis.R")
 
+This will download the required package (plyr) and the required data from (https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) and store it in a zip file called data.zip, After this a new folder will be generated (results/) containing the two datasets.
 
-## Create data and folders
+dataset1.csv - 10299 rows and 81 cols
+dataset2.csv - 180 rows and 81 cols
+Include dataset
 
-## Create data and folders   
-# verifies the data zip file has been downloaded
-if(!file.exists(file)){
-     
-##Downloads the data file
-  print("downloading Data")
-  download.file(url,file, mode = "wb")
-     
-}
- 
-if(!file.exists(result_folder)){
-  print("Creating result folder")
-  dir.create(result_folder)
-}
-
-
-} 
- 
-##reads a table from the zip data file and applies cols
-getTable <- function (filename,cols = NULL){
-     
- print(paste("Getting table:", filename))
-    
- f <- unz(file, paste(data_path,filename,sep="/"))
-     
- data <- data.frame()
- 
-getTable <- function (filename,cols = NULL){
-
-##Reads and creates a complete data set
- getData <- function(type, features){
-     
- print(paste("Getting data", type))
-   
-subject_data <- getTable(paste(type,"/","subject_",type,".txt",sep=""),"id")
- y_data <- getTable(paste(type,"/","y_",type,".txt",sep=""),"activity")    
- x_data <- getTable(paste(type,"/","X_",type,".txt",sep=""),features$V2) 
- 
-getData <- function(type, features){
- 
-##saves the data into the result folder
-saveResult <- function (data,name){
-    
-print(paste("Saving data", name))
-   
-file <- paste(result_folder, "/", name,".csv" ,sep="")
- write.csv(dataset1,file)
- write.csv(data,file)
-}
- 
- 
-colnames(dataset2[,-c(1:2)]) <- paste(colnames(dataset2[,-c(1:2)]), "_mean", sep
- 
- saveResult(dataset2,"dataset2")
- 
-}
- 
-run_analysis()
-
+The data is located in the results folder  dataset1 <- read.csv("results/dataset1.csv") dataset2 <- read.csv("results/dataset2.csv") 
