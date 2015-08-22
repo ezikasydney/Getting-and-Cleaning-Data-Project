@@ -15,7 +15,7 @@ run_analysis.R
 -run_analysis <- function (){
 
 file <- "data.zip"
-url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+url <- "http://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 data_path <- "UCI HAR Dataset"
 result_folder <- "results"
  
